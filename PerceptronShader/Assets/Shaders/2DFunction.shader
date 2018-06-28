@@ -1,9 +1,10 @@
-﻿
-Shader "Perceptron/Simple"
+Shader "2DFunction/Linear"
 {
     Properties
     {
         _MainTex("Image", 2D) = "white"
+        _FunctionRate("A", FLOAT) = 1
+        _FunctionBias("B", FLOAT) = 0
     }
     Subshader
     {
@@ -14,6 +15,9 @@ Shader "Perceptron/Simple"
             #pragma fragment frag
 
             sampler _MainTex;
+
+            float _FunctionRate;
+            float _FunctionBias;
 
             struct vert_input
             {
@@ -39,7 +43,12 @@ Shader "Perceptron/Simple"
 
             half4 frag(vert_output o) : COLOR
             {
-                return tex2D(_MainTex, o.uv);
+                if (o.uv.y < _FunctionRate*o.uv.x + _FunctionBias)
+                {
+                    return half4(0,0,1,1);
+                }
+
+                return half4(1,0,0,1);
             }
 
             ENDCG
