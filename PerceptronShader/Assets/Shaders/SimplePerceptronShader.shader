@@ -1,9 +1,9 @@
-﻿
-Shader "Perceptron/Simple"
+﻿Shader "Perceptron/Simple"
 {
     Properties
     {
-        _MainTex("Image", 2D) = "white"
+        _W0("W0", FLOAT) = 1
+        _W1("W1", FLOAT) = 0
     }
     Subshader
     {
@@ -13,7 +13,7 @@ Shader "Perceptron/Simple"
             #pragma vertex vert
             #pragma fragment frag
 
-            sampler _MainTex;
+            float _W0, _W1;
 
             struct vert_input
             {
@@ -39,7 +39,12 @@ Shader "Perceptron/Simple"
 
             half4 frag(vert_output o) : COLOR
             {
-                return tex2D(_MainTex, o.uv);
+                if (dot(normalize(o.uv - float2(0.5, 0.5)), normalize(float2(_W0, _W1))) >= 0)
+                {
+                    return half4(0,0,1,1);
+                }
+
+                return half4(1,0,0,1);
             }
 
             ENDCG

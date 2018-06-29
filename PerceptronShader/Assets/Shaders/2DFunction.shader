@@ -2,7 +2,6 @@ Shader "2DFunction/Linear"
 {
     Properties
     {
-        _MainTex("Image", 2D) = "white"
         _FunctionRate("A", FLOAT) = 1
         _FunctionBias("B", FLOAT) = 0
     }
@@ -13,8 +12,6 @@ Shader "2DFunction/Linear"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
-            sampler _MainTex;
 
             float _FunctionRate;
             float _FunctionBias;
