@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PerceptronMaterial
-  m_Shader: {fileID: 4800000, guid: ecef8198e882c4df28478f12ffd774d9, type: 3}
+  m_Name: SimpleNeuralMaterial
+  m_Shader: {fileID: 4800000, guid: 7044214a04d924c01b3e08b59e4d745a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -55,6 +55,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _B0: -707.88324
+    - _B1: -667.40924
+    - _B2: -323.49103
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -70,8 +73,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _W0: -0.38
-    - _W1: 0.27
+    - _W0: -104.11899
+    - _W1: -201.76942
+    - _W2: -79.28092
+    - _W3: -309.0639
+    - _W4: -48.238365
+    - _W5: -88.135345
+    - _W6: 0
+    - _W7: 0
+    - _W8: 0
+    - _W9: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

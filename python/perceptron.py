@@ -7,7 +7,7 @@ try:
 except NameError:
     xrange = range
 
-def learn(nn, input_samples, targets, epoches=10, min_mse=1e-16, max_mse=1e+100):
+def learn(nn, input_samples, targets, epoches=10, min_mse=1e-8, max_mse=1e+10):
 
     if len(nn.layers) > 1:
         print("Error: " + \
@@ -19,11 +19,13 @@ def learn(nn, input_samples, targets, epoches=10, min_mse=1e-16, max_mse=1e+100)
             "Input and Targets list should have the same size!")
         return
 
+    alpha = 0.15
+
     for e in xrange(0, epoches):
 
         mse = 0
         for i in xrange(0, len(input_samples)):
-            if random.randint(0, 100) > 20:
+            if random.randint(0, 100) > 35:
                 continue
 
             nn_output = nn.get_output(input_samples[i])
@@ -41,10 +43,10 @@ def learn(nn, input_samples, targets, epoches=10, min_mse=1e-16, max_mse=1e+100)
             mse = mse + np.inner(np.transpose(nn_error), np.transpose(nn_error))
 
             new_weights = nn.layers[0].weights + \
-                np.dot(nn_error, np.transpose(input_samples[i]))
+                alpha * np.dot(nn_error, np.transpose(input_samples[i]))
             if not np.isnan(np.sum(new_weights)):
                 nn.layers[0].weights = new_weights
-            new_bias = nn.layers[0].bias + nn_error
+            new_bias = nn.layers[0].bias + alpha * nn_error
             if not np.isnan(np.sum(new_bias)):
                 nn.layers[0].bias = new_bias
 
